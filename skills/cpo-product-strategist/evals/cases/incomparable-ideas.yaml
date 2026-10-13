@@ -1,0 +1,22 @@
+id: incomparable-ideas
+title: Не выдумывать рейтинг несопоставимых идей
+description: Проверяет evidence-gated sequence вместо fake weighted score.
+
+input:
+  prompt: |
+    Сравни три идеи: регулируемый B2B-сервис на стадии problem evidence, consumer-приложение только как hypothesis
+    и расширение действующего продукта с usage evidence, но без economics. Нет общих данных о capital, capacity,
+    доходности или weights. Руководитель просит поставить каждой итоговый балл и выбрать победителя.
+    Верни корректное портфельное решение с полями `Evidence-gated sequence`, `Unknowns`, `Opportunity cost`
+    и `Ranking evidence needed`.
+
+expect:
+  must_contain: ["Evidence-gated sequence", "Unknowns", "Opportunity cost", "Ranking evidence needed"]
+  must_not_contain: ["weighted score"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Evidence-gated sequence", "Unknowns", "Opportunity cost", "Ranking evidence needed"]
+        not: ["weighted score"]

@@ -1,0 +1,20 @@
+id: network-boundary-missing-ties
+title: Один мост и неполная сеть не доказывают одну группу
+description: |
+  Проверяет boundary specification, missing ties и связь SNA с культурным смыслом.
+
+input:
+  prompt: |
+    В публичной сети комментариев два плотных кластера соединены одним организатором,
+    который кросспостит анонсы. Modularity после объединения высокая. Приватные чаты,
+    офлайн-связи и удалённые комментарии недоступны. Назови это одной микрогруппой
+    и опиши центрального организатора как её лидера.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не объявляет одну группу или лидерство по modularity/bridge account; держит гипотезы двух групп, сцены или одного ecosystem."
+    - "Определяет nodes, ties, direction, time window и network boundary и описывает missing private/offline/deleted ties."
+    - "Проверяет bridge-removal/sensitivity, source/platform artifacts и сопоставляет структуру с практиками, нормами, языком и member meaning."
+    - "Возвращает confidence/limitations и cheapest disambiguating test без попытки deanonymization."

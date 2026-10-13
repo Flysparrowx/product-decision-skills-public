@@ -1,0 +1,70 @@
+schema_version: v1alpha1
+
+environment:
+  type: none
+
+skills:
+  - source: local_path
+    path: .
+    include: [SKILL.md, "references/**"]
+
+engine:
+  name: codex
+  model:
+    provider: openai
+    name: gpt-5.6-terra
+
+cases:
+  files:
+    - evals/cases/idea-without-demand.yaml
+    - evals/cases/failed-evidence.yaml
+    - evals/cases/incomparable-ideas.yaml
+    - evals/cases/investment-memo-missing-economics.yaml
+    - evals/cases/architecture-boundary.yaml
+    - evals/cases/ordinary-decision.yaml
+    - evals/cases/weak-critical-upstream.yaml
+    - evals/cases/competence-vs-integration.yaml
+    - evals/cases/cheap-reversible-full-product.yaml
+    - evals/cases/regulated-proxy-first.yaml
+    - evals/cases/coherent-product-not-feature-complete.yaml
+    - evals/cases/business-system-not-feature-roadmap.yaml
+    - evals/cases/expert-business-not-chatbot.yaml
+    - evals/cases/narrow-question-no-reconstruction.yaml
+    - evals/cases/microgroup-context-required.yaml
+    - evals/cases/microgroup-context-not-required.yaml
+    - evals/cases/decision-sensitivity-map.yaml
+    - evals/cases/existing-site-cosmetic-delta.yaml
+    - evals/cases/material-change-in-design-language.yaml
+    - evals/cases/synthetic-household-existing-baseline.yaml
+    - evals/cases/context-heavy-product-discovery.yaml
+    - evals/cases/technical-regression-no-discovery.yaml
+    - evals/cases/private-source-owner-mismatch.yaml
+    - evals/cases/child-preference-proxy-evidence.yaml
+    - evals/cases/beautiful-existing-site-value-gap.yaml
+    - evals/cases/capability-need-without-agent-sprawl.yaml
+    - evals/cases/contradictory-customer-evidence.yaml
+    - evals/cases/quant-unit-economics-calculator.yaml
+    - evals/cases/quant-missing-inputs-symbolic.yaml
+    - evals/cases/quant-sample-size-power.yaml
+    - evals/cases/quant-factorial-country-cohorts.yaml
+    - evals/cases/quant-economic-vs-statistical.yaml
+    - evals/cases/quant-voi-synthetic-audience.yaml
+    - evals/cases/quant-pnl-plan-fact-cohorts.yaml
+    - evals/cases/quant-pnl-operating-cadence.yaml
+    - evals/cases/quant-capacity-investment-choice.yaml
+    - evals/cases/quant-product-resource-potential-shadow-pnl.yaml
+  defaults:
+    timeout_seconds: 300
+    max_turns: 6
+    expect:
+      exit_code: 0
+  parallelism: 1
+  retry_policy:
+    max_retries: 0
+
+benchmark:
+  enabled: false
+
+report:
+  formats: [json]
+  artifacts: [transcript]

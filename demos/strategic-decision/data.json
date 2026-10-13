@@ -1,0 +1,3 @@
+{
+  "kind": "bar", "title": "Synthetic pilot: committed versus eligible sessions", "unit": "Sessions", "period": "Synthetic pilot window", "source": "Author-created synthetic anonymized pilot fixture; not market estimates", "labels": ["Self-serve", "Organizer-led"], "series": [{"name": "Eligible", "values": [40, 40]}, {"name": "Committed", "values": [10, 24]}]
+}

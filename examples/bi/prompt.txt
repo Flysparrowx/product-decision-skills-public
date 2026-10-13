@@ -1,0 +1,1 @@
+Plot supplied.json into chart.svg using an appropriate installed skill.

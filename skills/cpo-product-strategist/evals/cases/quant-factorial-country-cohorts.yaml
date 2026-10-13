@@ -1,0 +1,23 @@
+id: quant-factorial-country-cohorts
+title: Спроектировать факторный тест без взрыва ячеек
+description: Проверяет факторы, взаимодействия, когорты и рациональный дизайн при ограниченном бюджете.
+
+input:
+  prompt: |
+    Контентный продукт хочет понять влияние сюжета (3 варианта), визуального стиля
+    (2 варианта) и локализации в 4 странах. Есть две возрастные группы и тёплая/холодная
+    аудитория, но бюджет не позволяет одинаково мощно проверить все 96 комбинаций.
+    Нужно отделить эффект локализации от страны и упаковки и выбрать, что производить.
+    Данных о baseline, variance и minimum worthwhile effect пока нет.
+
+    Спроектируй количественный learning plan. Не придумывай sample size.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не требует механически тестировать все комбинации и не придумывает размер выборки; предлагает staged, fractional factorial или иной рациональный дизайн с явным объяснением того, какие эффекты и взаимодействия оцениваются."
+    - "Разделяет сюжет, визуал, локализацию, страну, возраст и familiarity/warmth; не смешивает country effect с localization treatment и не превращает все возможные subgroup findings в primary claims."
+    - "Определяет pilot для оценки baseline/variance и minimum meaningful effect из производственной экономики, после чего формирует power calculation и allocation."
+    - "Задаёт primary outcome, guardrails, randomization/exposure unit, repeated or clustered structure where material, multiple-testing discipline, decision rule и product action."
+    - "Заканчивает выбором самой дешёвой последовательности, способной изменить производственное решение, а не общим советом собрать больше данных."

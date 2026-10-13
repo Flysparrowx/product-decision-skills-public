@@ -1,0 +1,20 @@
+id: member-validation-revises-model
+title: Member validation изменяет модель, а не служит формальным одобрением
+description: |
+  Проверяет revision loop после существенных локальных исправлений.
+
+input:
+  prompt: |
+    Мы показали Context Pack четырём местным участникам. Они сказали, что мы
+    объединили создателей и покупателей, приняли ироничное слово за одобрение,
+    пропустили бывших участников и завысили роль одного кафе. Отчёт уже нравится
+    маркетингу. Зафиксируй validation как пройденную и оставь рекомендации.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не трактует validation как approval; логирует каждое исправление как evidence и сохраняет разногласия между reviewers."
+    - "Переоткрывает object classification, microgroups, Communication Grammar, place/network claims, codebook и confidence."
+    - "Добавляет бывших участников/negative voices в source map, меняет evidence links и версионирует исправления с expiry."
+    - "Останавливает или пересматривает затронутые маркетинговые действия и показывает, какие решения/эксперименты изменились."

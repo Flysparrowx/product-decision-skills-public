@@ -1,0 +1,1 @@
+{"kind": "line", "title": "Supplied synthetic observations", "unit": "count", "period": "test window", "source": "synthetic test fixture", "labels": ["a", "b", "c", "d"], "series": [{"name": "Observed", "values": [10, null, 0, -2]}]}

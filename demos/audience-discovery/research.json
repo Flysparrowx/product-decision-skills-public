@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "run_id": "synthetic-audience-demo",
+  "decision": "Test organizer-led scheduling versus generic self-service onboarding",
+  "research_depth": "SCAN",
+  "target_group": {
+    "definition": "Fictional adult neighborhood volunteer organizers",
+    "included": [
+      "organizers and adult participants"
+    ],
+    "excluded": [
+      "minors and individual location tracking"
+    ]
+  },
+  "geography": {
+    "scope": "fictional district",
+    "precision": "district aggregate"
+  },
+  "time_window": {
+    "from": "2026-10-01",
+    "to": "2026-10-13",
+    "accessed_at": "2026-10-13"
+  },
+  "access_and_ethics": {
+    "risk": "LOW",
+    "authorized_sources_only": true,
+    "human_review": false
+  },
+  "sources": [
+    {
+      "id": "s1",
+      "type": "interview",
+      "reference": "synthetic fixture 1",
+      "access_method": "author-created teaching fixture",
+      "collection_date": "2026-10-13",
+      "limitations": [
+        "fictional; no external collection"
+      ]
+    },
+    {
+      "id": "s2",
+      "type": "event note",
+      "reference": "synthetic fixture 2",
+      "access_method": "author-created teaching fixture",
+      "collection_date": "2026-10-13",
+      "limitations": [
+        "fictional; no external collection"
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "support note",
+      "reference": "synthetic fixture 3",
+      "access_method": "author-created teaching fixture",
+      "collection_date": "2026-10-13",
+      "limitations": [
+        "fictional; no external collection"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "observation": "Organizer checks schedule before inviting participants",
+      "source_id": "s1",
+      "source_type": "interview",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    },
+    {
+      "id": "e2",
+      "observation": "Participant asks who can see location",
+      "source_id": "s2",
+      "source_type": "event note",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    },
+    {
+      "id": "e3",
+      "observation": "New member asks for familiar meeting point",
+      "source_id": "s3",
+      "source_type": "support note",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    },
+    {
+      "id": "e4",
+      "observation": "Event note shows volunteer organizer involvement",
+      "source_id": "s1",
+      "source_type": "interview",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    },
+    {
+      "id": "e5",
+      "observation": "Support note asks for calendar export",
+      "source_id": "s2",
+      "source_type": "event note",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    },
+    {
+      "id": "e6",
+      "observation": "Support note contains preference for self-service",
+      "source_id": "s3",
+      "source_type": "support note",
+      "access_date": "2026-10-13",
+      "confidence": "synthetic illustration only"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f1",
+      "statement": "Organizer-assisted scheduling may reduce trust friction; self-service preference is counterevidence",
+      "kind": "HYPOTHESIS",
+      "evidence_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "counterevidence_ids": [
+        "e6"
+      ],
+      "confidence": "not empirically validated"
+    }
+  ],
+  "limitations": [
+    "All sources and observations are synthetic teaching fixtures, not actual research",
+    "Convenience evidence does not measure representativeness, demand, willingness to pay or causal impact",
+    "No saturation or first-party validation claimed"
+  ],
+  "expiry": "Replace with authorized real evidence before any live decision",
+  "recommendation": "INSUFFICIENT_EVIDENCE"
+}

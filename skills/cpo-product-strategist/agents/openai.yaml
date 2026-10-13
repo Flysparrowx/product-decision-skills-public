@@ -1,0 +1,6 @@
+interface:
+  display_name: "CPO Product Strategist"
+  short_description: "Product choices, evidence and business strategy"
+  default_prompt: "Use $cpo-product-strategist for the supplied decision and evidence."
+policy:
+  allow_implicit_invocation: true

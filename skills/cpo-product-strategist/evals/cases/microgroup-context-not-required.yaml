@@ -1,0 +1,21 @@
+id: microgroup-context-not-required
+title: Не навязывать микро-контекст нерелевантному решению
+description: Проверяет, что специализированное исследование не становится обязательным ритуалом.
+
+input:
+  prompt: |
+    У внутреннего инструмента финансовой команды после обновления выросло время формирования стандартного
+    отчёта. Пользователи, рабочий процесс и причина уже установлены по telemetry: новый запрос к базе занимает
+    лишние 40 секунд. Нужно решить, откатить изменение или оптимизировать запрос. В первой строке укажи
+    `Microgroup context: REQUIRED | NOT_REQUIRED` и дай краткий CPO-ответ.
+
+expect:
+  must_contain: ["Microgroup context: NOT_REQUIRED"]
+  must_not_contain: ["MicrogroupContextRequest", "MicrogroupContextPack"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Microgroup context: NOT_REQUIRED"]
+        not: ["MicrogroupContextRequest", "MicrogroupContextPack"]

@@ -1,0 +1,28 @@
+id: quant-capacity-investment-choice
+title: Проверить гипотезу математикой ограниченной мощности
+description: Проверяет capacity economics, opportunity cost и выбор расчёта без лишней модели.
+
+input:
+  prompt: |
+    Команда может производить 40 клиентских проектов в месяц. Базовый проект даёт
+    contribution 70 000 ₽ и занимает одну производственную ячейку. Новый premium-вариант
+    по гипотезе даст contribution 130 000 ₽, но занимает две ячейки и потребует
+    разовой инвестиции 600 000 ₽. В пилоте можно продать не больше 8 premium-проектов
+    в месяц; надёжных данных о повторном спросе после пилота нет.
+
+    Нужно решить, стоит ли запускать ограниченный пилот. Посчитай contribution на
+    constrained cell, opportunity cost замещения, месячный incremental contribution
+    при 8 premium-проектах и простой payback разовой инвестиции при сохранении этих
+    условий. Дай решение и калькулятор, но не выдавай пилот за доказанный масштабируемый бизнес.
+
+expect:
+  must_contain: ["70 000", "65 000", "80 000"]
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Корректно показывает 70 000 ₽ contribution per cell у базового проекта и 65 000 ₽ у premium, opportunity cost 140 000 ₽ на два вытесненных базовых проекта, -10 000 ₽ incremental contribution на один premium и -80 000 ₽ в месяц при 8 проектах; поэтому простой payback при данных условиях отсутствует."
+    - "Не принимает более высокий contribution per project за лучший выбор при ограниченной мощности; использует constrained resource economics."
+    - "Рекомендует STOP или REVISE экономики/дизайна пилота, либо пилот только ради конкретного learning value с отдельным бюджетом, но не обещает масштабирование."
+    - "Даёт калькулятор с capacity, contribution per option, cells per project, pilot volume, opportunity cost, incremental contribution и investment; не придумывает спрос после пилота."

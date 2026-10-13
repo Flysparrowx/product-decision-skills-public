@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:product-decision-skills:microgroup-research-run:1.0",
+  "title": "Microgroup Research Run",
+  "type": "object",
+  "required": [
+    "schema_version", "run_id", "decision", "research_depth", "target_group",
+    "geography", "time_window", "access_and_ethics", "sources", "evidence",
+    "findings", "limitations", "expiry", "recommendation"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "decision": {"type": "string", "minLength": 1},
+    "research_depth": {"enum": ["SCAN", "STANDARD", "DEEP"]},
+    "target_group": {
+      "type": "object",
+      "required": ["definition", "included", "excluded"]
+    },
+    "geography": {
+      "type": "object",
+      "required": ["scope", "precision"]
+    },
+    "time_window": {
+      "type": "object",
+      "required": ["from", "to", "accessed_at"]
+    },
+    "access_and_ethics": {
+      "type": "object",
+      "required": ["risk", "authorized_sources_only", "human_review"],
+      "properties": {
+        "risk": {"enum": ["LOW", "ELEVATED", "STOP"]},
+        "authorized_sources_only": {"const": true},
+        "human_review": {"type": "boolean"}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "reference", "access_method", "collection_date", "limitations"]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "observation", "source_id", "source_type", "access_date", "confidence"]
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "kind", "evidence_ids", "counterevidence_ids", "confidence"]
+      }
+    },
+    "limitations": {"type": "array"},
+    "expiry": {"type": "string", "minLength": 1},
+    "recommendation": {"enum": ["GO", "REVISE", "INSUFFICIENT_EVIDENCE"]}
+  },
+  "additionalProperties": true
+}

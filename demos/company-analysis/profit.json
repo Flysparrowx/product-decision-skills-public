@@ -1,0 +1,9 @@
+{
+  "kind": "line",
+  "title": "Synthetic service company: supplied operating profit",
+  "unit": "USD thousands",
+  "period": "Synthetic Q1",
+  "source": "Author-created synthetic teaching fixture; same company, accrual basis, no tax, same version; profit stage explicitly operating profit",
+  "labels": ["Jan", "Feb", "Mar"],
+  "series": [{"name": "Operating profit", "values": [20, 0, -10]}]
+}

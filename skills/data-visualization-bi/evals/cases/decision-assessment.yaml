@@ -1,0 +1,11 @@
+id: decision-assessment
+title: decision-assessment
+input:
+  prompt: Используй $data-visualization-bi. Нарисуй 9-box компетенции и потенциал;
+    оценок нет. Это GE McKinsey? Файлы не создавай.
+judge:
+  type: agent_judge
+  criteria:
+  - Различает пользовательскую рубрику, HR performance/potential и портфель GE McKinsey.
+  - Запрашивает рубрику, пороги, дату, свидетельства и калибровку; не выдумывает персональные
+    позиции.

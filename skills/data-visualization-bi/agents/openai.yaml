@@ -1,0 +1,6 @@
+interface:
+  display_name: "Data Visualization & BI"
+  short_description: "Evidence-based charts and financial comparisons"
+  default_prompt: "Use $data-visualization-bi for the supplied decision and evidence."
+policy:
+  allow_implicit_invocation: true

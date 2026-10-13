@@ -1,0 +1,36 @@
+schema_version: v1alpha1
+environment:
+  type: none
+skills:
+  - source: local_path
+    path: .
+engine:
+  name: codex
+  model:
+    provider: openai
+    name: gpt-6.1-sol
+cases:
+  files:
+    - evals/cases/aesthetic-cluster-versus-idioculture.yaml
+    - evals/cases/coding-agreement-not-construct-validity.yaml
+    - evals/cases/conversation-and-cohesion.yaml
+    - evals/cases/cross-city-functional-analogue.yaml
+    - evals/cases/member-validation-revises-model.yaml
+    - evals/cases/minors-and-identity-boundary.yaml
+    - evals/cases/network-boundary-missing-ties.yaml
+    - evals/cases/platform-access-degradation.yaml
+    - evals/cases/public-space-visitor-bias.yaml
+    - evals/cases/same-platform-different-social-function.yaml
+    - evals/cases/slang-repair-and-outsider-use.yaml
+    - evals/cases/socionics-typing-rejected.yaml
+    - evals/cases/viral-hashtag-not-community.yaml
+  parallelism: 1
+judge:
+  type: agent_judge
+  model: openai/gpt-6-astra
+  criteria:
+    - "Use evidence and preserve uncertainty, privacy, contradictions and decision relevance."
+benchmark:
+  enabled: false
+report:
+  formats: [json]

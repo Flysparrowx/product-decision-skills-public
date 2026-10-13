@@ -1,0 +1,19 @@
+id: quant-missing-inputs-symbolic
+title: Не останавливаться на предупреждении при отсутствии чисел
+description: Проверяет точную символическую модель, input request и калькулятор вместо выдуманных данных.
+
+input:
+  prompt: |
+    Хотим понять, окупится ли новый сервис подписки, но у нас пока нет цены, CAC,
+    retention, cost-to-serve, числа клиентов или фиксированных расходов. Скажи,
+    какую экономику построить. Не придумывай значения. Мне нужен результат,
+    который можно сразу заполнить, а не совет «соберите данные».
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не придумывает цену, CAC, retention, cost, volume, margin, threshold или timeline."
+    - "Возвращает заполняемый Decision calculator: точный input dictionary с единицами/периодами/источниками, формулы net revenue, contribution, break-even и payback или cohort cash flow, а также связанные decision outputs."
+    - "Показывает, какие минимальные входы нужны первыми и какой break-even или sensitivity result можно получить до полного датасета."
+    - "Не заканчивает общим советом провести исследование; формулирует точный следующий evidence gate и продуктовый выбор, который он разблокирует."

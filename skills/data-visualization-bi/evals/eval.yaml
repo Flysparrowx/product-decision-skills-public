@@ -1,0 +1,34 @@
+schema_version: v1alpha1
+environment:
+  type: none
+skills:
+  - source: local_path
+    path: .
+engine:
+  name: codex
+  model:
+    provider: openai
+    name: gpt-6.1-sol
+cases:
+  files:
+    - evals/cases/sales.yaml
+    - evals/cases/single-chart.yaml
+    - evals/cases/missing-data.yaml
+    - evals/cases/pipeline.yaml
+    - evals/cases/planfact-continuity.yaml
+    - evals/cases/planfact-incompatible.yaml
+    - evals/cases/advanced-visuals.yaml
+    - evals/cases/visual-legibility.yaml
+    - evals/cases/decision-portfolio.yaml
+    - evals/cases/decision-assessment.yaml
+    - evals/cases/decision-mcda-radar.yaml
+  parallelism: 1
+judge:
+  type: agent_judge
+  model: openai/gpt-6-astra
+  criteria:
+    - "Результат решает задачу на предоставленных данных, применяет подходящий BI-приём и не выдумывает наблюдения источников."
+benchmark:
+  enabled: false
+report:
+  formats: [json]

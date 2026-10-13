@@ -1,0 +1,20 @@
+id: investment-memo-missing-economics
+title: Сформировать InvestmentMemo без выдуманных чисел
+description: Проверяет canonical memo и numeric-input gate.
+
+input:
+  prompt: |
+    Подготовь InvestmentMemo для решения, финансировать ли пилот AI-продукта. Есть описание проблемы и target user,
+    но нет market size, price, CAC, conversion, cost, capacity, success threshold или timeline. Не проводи внешний поиск
+    и не придумывай значения. Используй точные разделы `Decision and owner`, `Evidence and unknowns`, `Alternatives`,
+    `Economics formulas and inputs`, `Cheapest credible test`, `Kill/change/double-down conditions`,
+    `Recommendation` и `Next human gate`.
+
+expect:
+  must_contain: ["Decision and owner", "Evidence and unknowns", "Alternatives", "Economics formulas and inputs", "Cheapest credible test", "Kill/change/double-down conditions", "Recommendation", "Next human gate"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Decision and owner", "Evidence and unknowns", "Alternatives", "Economics formulas and inputs", "Cheapest credible test", "Kill/change/double-down conditions", "Recommendation", "Next human gate"]

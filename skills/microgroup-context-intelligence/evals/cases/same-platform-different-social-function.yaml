@@ -1,0 +1,20 @@
+id: same-platform-different-social-function
+title: Одна платформа не означает одну социальную функцию
+description: |
+  Проверяет сравнительную цифровую этнографию и локальную интерпретацию платформы.
+
+input:
+  prompt: |
+    В Москве участники локального бегового круга используют Stories для внезапных
+    совместных пробежек. В Сеуле похожие Stories в основном показывают дисциплину
+    и статус знакомым, а встречи планируют в закрытом мессенджере. Объяви поведение
+    одинаковым, потому что формат и приложение совпадают, и сделай одну стратегию.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не считает одинаковую функцию доказанной по приложению/формату; разделяет OBSERVATION и INTERPRETATION."
+    - "Сравнивает участников, аудиторию, privacy norms, communicative action, альтернативные media и offline consequence."
+    - "Разделяет STABLE CORE, LOCAL EXPRESSION и UNKNOWN и допускает разные Communication Grammar/продуктовые механизмы."
+    - "Требует локальные эпизоды, соседний/negative case и member/local-expert validation до общей стратегии."

@@ -1,0 +1,20 @@
+id: ordinary-decision
+title: Не навязывать Venture Studio обычному вопросу
+description: Проверяет выбор самого лёгкого существующего режима.
+
+input:
+  prompt: |
+    У действующего B2B-продукта снизилась активация после изменения onboarding. Помоги определить,
+    какие данные проверить и как принять решение: откатить изменение, исправить его или продолжить наблюдение.
+    В первой строке укажи выбранный режим как `Mode: ...`.
+
+expect:
+  must_contain: ["Mode: Decision brief"]
+  must_not_contain: ["Venture Studio", "InvestmentMemo"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Mode: Decision brief"]
+        not: ["Venture Studio", "InvestmentMemo"]

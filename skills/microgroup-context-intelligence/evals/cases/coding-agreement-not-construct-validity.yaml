@@ -1,0 +1,19 @@
+id: coding-agreement-not-construct-validity
+title: Согласие кодировщиков не доказывает валидность культурной категории
+description: |
+  Проверяет различие reliability, construct validity и локального знания.
+
+input:
+  prompt: |
+    Два внешних аналитика получили 94% agreement по коду «настоящий участник».
+    Три местных участника говорят, что код путает иронию с высокомерием и исключает
+    новичков, которых группа уже приняла. Можно считать разметку gold dataset?
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не объявляет gold dataset по agreement; разделяет coding reliability и construct/cultural validity."
+    - "Проверяет unit, code definition, inclusion/exclusion, examples/counterexamples, coder positionality и локальную иронию."
+    - "Сохраняет disagreement и annotator locality/provenance, пересматривает codebook/version и проводит повторную калибровку."
+    - "Не делает местных участников автоматической истиной: использует нескольких reviewers, rival cases и документирует нерешённые границы."

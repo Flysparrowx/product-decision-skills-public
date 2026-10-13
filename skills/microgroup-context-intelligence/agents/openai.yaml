@@ -1,0 +1,6 @@
+interface:
+  display_name: "Microgroup Context Intelligence"
+  short_description: "Local practices, language, trust and audience discovery"
+  default_prompt: "Use $microgroup-context-intelligence for the supplied decision and evidence."
+policy:
+  allow_implicit_invocation: true

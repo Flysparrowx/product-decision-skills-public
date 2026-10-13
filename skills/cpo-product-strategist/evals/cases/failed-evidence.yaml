@@ -1,0 +1,23 @@
+id: failed-evidence
+title: Остановить тезис после отрицательного evidence
+description: Проверяет способность рекомендовать kill вместо защиты sunk cost.
+
+input:
+  prompt: |
+    Идея обещала сократить ручную работу бухгалтеров. Три последовательных bounded пилота на целевом workflow
+    показали, что пользователи перепроверяют весь результат и тратят больше времени; покупатели отказались продолжать,
+    а альтернативного сегмента или другого механизма ценности нет. Нового теста, способного изменить решение,
+    команда не предлагает. Уже потрачено много сил, поэтому автор просит продолжить. Дай Venture Studio решение
+    в формате `Decision: ...`, укажи decision evidence и следующий human gate.
+
+expect:
+  must_contain: ["Decision", "Decision evidence", "human gate"]
+  must_not_contain: ["Decision: INCUBATE", "Decision: SCALE", "Decision: CONTINUE"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Decision", "Decision evidence", "human gate"]
+        any: ["KILL", "Sunset", "sunset", "закрыть"]
+        not: ["Decision: INCUBATE", "Decision: SCALE", "Decision: CONTINUE"]

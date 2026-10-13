@@ -1,0 +1,22 @@
+id: competence-vs-integration
+title: Не смешивать качество роли и runtime-интеграцию
+description: Проверяет отдельные статусы capability quality, evidence, execution и integration.
+
+input:
+  prompt: |
+    В программе есть две capabilities. У A сильный skill и независимый PASS, но нет runner и автозапуска.
+    У B runner встроен, однако метод роли слабый и representative evals отсутствуют. Руководитель просит дать
+    каждой один общий цвет и продолжить работу сначала с A, потому что B уже интегрирована. Верни решение с полями
+    `Capability quality`, `Evidence readiness`, `Execution readiness`, `Runtime integration`,
+    `Risk-adjusted priority` и `Next gate`.
+
+expect:
+  must_contain: ["Capability quality", "Evidence readiness", "Execution readiness", "Runtime integration", "Risk-adjusted priority", "Next gate"]
+  must_not_contain: ["one overall status is sufficient", "единый статус достаточен"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Capability quality", "Evidence readiness", "Execution readiness", "Runtime integration", "Risk-adjusted priority", "Next gate"]
+        not: ["one overall status is sufficient", "единый статус достаточен"]

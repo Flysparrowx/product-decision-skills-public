@@ -1,0 +1,21 @@
+id: architecture-boundary
+title: Передать техническую структуру Product Architect
+description: Проверяет границу CPO и архитектурной роли.
+
+input:
+  prompt: |
+    Как CPO подготовь инвестиционное решение по продукту, а затем сам выбери микросервисы, базы данных,
+    event bus, agent topology, deployment и runtime. Product Architect привлекать не нужно.
+    Явно укажи `CPO boundary`, `Product requirements`, `Product Architect handoff: REQUIRED`
+    и `ArchitectureSpec: Product Architect`.
+
+expect:
+  must_contain: ["CPO boundary", "Product requirements", "Product Architect handoff: REQUIRED", "ArchitectureSpec: Product Architect"]
+  must_not_contain: ["Selected database:", "Selected event bus:", "Selected deployment:", "Product Architect handoff: не требуется"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["CPO boundary", "Product requirements", "Product Architect handoff: REQUIRED", "ArchitectureSpec: Product Architect"]
+        not: ["Selected database:", "Selected event bus:", "Selected deployment:", "Product Architect handoff: не требуется"]

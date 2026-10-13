@@ -1,0 +1,26 @@
+id: microgroup-context-required
+title: Запросить микро-контекст только для материального решения
+description: Проверяет bounded handoff без выдуманной аудитории или спроса.
+
+input:
+  prompt: |
+    Мы проектируем сервис, который помогает независимым мастерам красоты в Казани получать больше повторных
+    записей через сайт и мессенджеры. Команда предполагает, что доверие, локальный язык, рекомендации,
+    профессиональные сообщества и привычные каналы могут изменить оффер, onboarding и дистрибуцию, но живого
+    исследования этой группы пока нет. Как CPO реши, нужен ли Microgroup Context, и не проводи само исследование.
+    Верни строго эту структуру, заполнив каждое поле конкретным непустым значением:
+    `Microgroup context: REQUIRED`, `Evidence status: MISSING`, раздел `MicrogroupContextRequest`
+    с полями `Decision to inform`, `Provisional behavioral group definition`, `Geography`,
+    `Time/freshness need`, `Decision surfaces`, `Existing evidence`, `Access/ethics boundary`,
+    `Evidence budget`, `Stop condition`; раздел `Decision held open` с полями `Dependent decision`
+    и `Unaffected analysis`; затем раздел `Evidence boundary` со строкой
+    `Not proof of: market size, demand, willingness to pay, or causality.`
+
+expect:
+  must_contain: ["Microgroup context: REQUIRED", "Evidence status: MISSING", "MicrogroupContextRequest", "Decision to inform", "Provisional behavioral group definition", "Geography", "Time/freshness need", "Decision surfaces", "Existing evidence", "Access/ethics boundary", "Evidence budget", "Stop condition", "Decision held open", "Dependent decision", "Unaffected analysis", "Evidence boundary", "Not proof of: market size, demand, willingness to pay, or causality."]
+  must_not_contain: ["MicrogroupContextPack", "доказанный спрос", "подтверждённая готовность платить", "proven demand", "proven willingness to pay"]
+
+judge:
+  type: script
+  script_path: evals/scripts/validate_microgroup_context_required.py
+  timeout_seconds: 30

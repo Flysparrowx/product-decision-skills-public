@@ -1,0 +1,12 @@
+{
+  "kind": "bar",
+  "title": "Synthetic service company: plan versus actual revenue",
+  "unit": "USD thousands",
+  "period": "Synthetic Q1",
+  "source": "Author-created synthetic teaching fixture; not a real company",
+  "labels": ["Jan", "Feb", "Mar"],
+  "series": [
+    {"name": "Plan", "values": [100, 110, 120]},
+    {"name": "Actual", "values": [100, 90, 80]}
+  ]
+}

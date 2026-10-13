@@ -1,0 +1,22 @@
+id: narrow-question-no-reconstruction
+title: Узкий вопрос не раздувается до пересборки бизнеса
+description: |
+  Проверяет предохранитель: новый режим не должен превращать локальное
+  обратимое решение в ненужную трансформацию компании.
+
+input:
+  prompt: |
+    Вчера мы изменили первый экран onboarding в действующем B2B SaaS. Активация сразу упала,
+    других изменений не было. Как принять решение: откатить, исправить или подождать?
+    В первой строке укажи `Mode: Decision brief`.
+
+expect:
+  must_contain: ["Mode: Decision brief"]
+  must_not_contain: ["Mode: Business-system reconstruction", "пересобрать всю компанию", "новая бизнес-модель"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Mode: Decision brief"]
+        not: ["Mode: Business-system reconstruction", "пересобрать всю компанию", "новая бизнес-модель"]

@@ -1,0 +1,30 @@
+id: quant-pnl-plan-fact-cohorts
+title: Разобрать продуктовый PnL по драйверам и когортам
+description: Проверяет product P&L, plan-fact bridge, forecast и связь отклонений с решениями.
+
+input:
+  prompt: |
+    Продуктовый P&L за месяц: plan revenue 10,0 млн ₽, actual 9,2 млн ₽;
+    plan COGS 4,0 млн ₽, actual 4,4 млн ₽; plan avoidable product/sales OPEX
+    3,0 млн ₽, actual 3,1 млн ₽. Финансы подтверждают эти booked actuals.
+    Из операционных данных известно: старые когорты дали revenue по плану, а новые
+    когорты дали на 0,8 млн ₽ меньше из-за более низкой активации; перерасход COGS
+    0,4 млн ₽ связан с ручной поддержкой новых когорт. Денежные поступления этого месяца
+    не предоставлены.
+
+    Как CPO посчитай gross profit и product operating result plan/actual, построй
+    `Plan–Fact bridge`, объясни, что произошло, и предложи минимальный P&L calculator
+    для следующего forecast. Не придумывай cash, налоги, EBITDA или причины сверх данных.
+
+expect:
+  must_contain: ["Plan–Fact bridge", "6,0", "4,8", "3,0", "1,7"]
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Корректно считает plan gross profit 6,0 млн ₽, actual gross profit 4,8 млн ₽, plan product operating result 3,0 млн ₽ и actual 1,7 млн ₽."
+    - "Строит Plan–Fact bridge: -0,8 млн ₽ revenue из новых когорт, -0,4 млн ₽ COGS из ручной поддержки и -0,1 млн ₽ OPEX; связывает вывод с activation/support mechanism."
+    - "Не называет product operating result EBITDA, accounting profit или cash и явно оставляет cash unknown."
+    - "Предлагает минимальный forecast/P&L calculator с plan, actual, forecast, cohort revenue, activation, support cost и decision outputs; не создаёт параллельный бухгалтерский учёт."
+    - "Формулирует продуктовый corrective decision и evidence gate вместо совета просто сократить расходы."

@@ -1,0 +1,30 @@
+id: quant-product-resource-potential-shadow-pnl
+title: Связать ресурсы, текущую ценность, LTV-потенциал и новую гипотезу
+description: Проверяет Product Economics & Portfolio Investment Management без ложного P&L или LTV.
+
+input:
+  prompt: |
+    У нас два действующих продукта и новая гипотеза. По действующим продуктам Finance
+    даёт revenue и booked costs, а системы дают active customers, retention, usage,
+    support hours, cloud consumption и quality incidents. Команда людей частично выделена
+    продуктам, частично работает на общей платформе; измерение platform consumption есть.
+    По новой гипотезе известны target customer и ценностный механизм, но price, conversion,
+    retention, cost-to-serve и reachable demand пока не проверены.
+
+    Построй управленческий контур, который покажет: сколько каких ресурсов ушло на каждый
+    продукт; какую customer и business value он даёт сейчас; lifecycle value и реалистичный
+    потенциал; куда направить следующую единицу дефицитного ресурса; и как сравнить с новой
+    гипотезой. Не придумывай числа и не превращай гипотезу в forecast.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  pass_threshold: 1.0
+  criteria:
+    - "Называет Product Economics & Portfolio Investment Management или эквивалентный управленческий контур, а не ограничивается P&L-таблицей."
+    - "Создаёт Product Resource Ledger с direct, shared, allocated и incremental/avoidable views; использует measured platform consumption и не предлагает удобное деление shared cost по revenue без причинности."
+    - "Строит decision-linked Product Performance Scorecard: customer outcome, current economics, growth/retention, quality, capacity, strategic value и evidence maturity; не сводит всё к revenue."
+    - "Использует LTV только при пригодном retention/repeat mechanism и предпочитает cohort contribution cash flow; для иных архетипов допускает другую lifecycle-value модель."
+    - "Разделяет Current run-rate, Evidence-bounded upside и Option upside; ограничивает potential reachable demand, channel, capacity, retention, quality, cash и evidence."
+    - "Для новой гипотезы создаёт symbolic Hypothesis Business Case / Shadow P&L с formulas, break-even, resource/cash exposure, sensitivities, evidence tags и promotion gate; не называет его Forecast или Budget."
+    - "Сравнивает marginal value per constrained resource и opportunity cost и заканчивает evidence-gated allocation decision без выдуманных чисел."

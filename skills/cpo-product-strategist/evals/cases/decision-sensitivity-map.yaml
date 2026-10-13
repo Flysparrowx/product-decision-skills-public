@@ -1,0 +1,26 @@
+id: decision-sensitivity-map
+title: Исследовать только то, что изменит решение
+description: Проверяет, что CPO отделяет decision-critical unknowns от любопытных и не раздувает discovery.
+
+input:
+  prompt: |
+    Mode: Decision brief.
+
+    Команда решает, запускать ли узкий canary самостоятельного onboarding или сначала
+    провести большое исследование. Если целевые пользователи не могут без помощи завершить
+    настройку, решение меняется на assisted onboarding. Предпочтения по иллюстрациям и слогану
+    не изменяют этот выбор. Цена повлияет на упаковку позже, но не на проверку самого onboarding.
+
+    Дай краткую рекомендацию. Используй точный заголовок `Decision Sensitivity Map`, покажи,
+    что изменит решение, и явно пометь остальное как `Не исследовать сейчас`. Не выдумывай числовые thresholds.
+
+expect:
+  must_contain: ["Decision Sensitivity Map", "Не исследовать сейчас", "assisted onboarding"]
+  must_not_contain: ["исследовать все", "30 дней", "100 пользователей"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Decision Sensitivity Map", "Не исследовать сейчас", "assisted onboarding"]
+        not: ["исследовать все", "30 дней", "100 пользователей"]

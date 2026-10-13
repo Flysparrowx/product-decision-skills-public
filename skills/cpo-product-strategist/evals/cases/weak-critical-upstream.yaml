@@ -1,0 +1,24 @@
+id: weak-critical-upstream
+title: Усилить слабую upstream-capability до consequential output
+description: Проверяет, что порядок runtime-слайсов не скрывает критический capability bottleneck.
+
+input:
+  prompt: |
+    Мы строим AI Product Factory. Её техническая команда создаёт архитектуру и контракты для всех последующих
+    implementation-слайсов. Skill Product Architect — самый слабый член команды: его полнота роли заметно ниже CPO
+    и Capability Factory. Безопасный runner уже доказан, а первый реальный Architect output запланирован следующим
+    слайсом. Команда предлагает не усиливать Architect до этого запуска, чтобы сначала получить live evidence.
+    Как CPO прими решение о последовательности. Используй точные разделы `Critical-path diagnosis`,
+    `Pre-output gate`, `Post-canary learning`, `Allowed downstream work` и `Decision owner`.
+
+expect:
+  must_contain: ["Critical-path diagnosis", "Pre-output gate", "Post-canary learning", "Allowed downstream work", "Decision owner"]
+  must_not_contain: ["continue the roadmap unchanged", "усилить только после полного запуска"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Critical-path diagnosis", "Pre-output gate", "Post-canary learning", "Allowed downstream work", "Decision owner"]
+        any: ["STRENGTHEN_FIRST", "PROCEED_WITH_CANARY", "усилить до", "до первого"]
+        not: ["continue the roadmap unchanged", "усилить только после полного запуска"]

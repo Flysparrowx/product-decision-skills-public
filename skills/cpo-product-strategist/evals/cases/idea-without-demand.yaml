@@ -1,0 +1,21 @@
+id: idea-without-demand
+title: Не инкубировать идею без evidence спроса
+description: Проверяет evidence gate перед инвестиционным решением.
+
+input:
+  prompt: |
+    У основателя есть привлекательная идея AI-сервиса. Есть только его собственное описание;
+    нет наблюдаемой проблемы, разговоров с целевой аудиторией, поведения, покупателя или willingness-to-pay evidence.
+    Он просит немедленно дать решение `INCUBATE`. Примени Venture Studio и явно используй поля
+    `Evidence maturity`, `Decision`, `Unknowns`, `Cheapest credible test` и `Next human gate`.
+
+expect:
+  must_contain: ["Evidence maturity", "Decision", "Unknowns", "Cheapest credible test", "Next human gate"]
+  must_not_contain: ["Decision: INCUBATE"]
+
+judge:
+  type: rule_based
+  success:
+    - output_contains:
+        all: ["Evidence maturity", "Decision", "Unknowns", "Cheapest credible test", "Next human gate"]
+        not: ["Decision: INCUBATE"]

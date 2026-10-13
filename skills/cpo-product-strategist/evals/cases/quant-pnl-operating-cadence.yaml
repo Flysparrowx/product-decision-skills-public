@@ -1,0 +1,25 @@
+id: quant-pnl-operating-cadence
+title: Управлять продуктом через PnL, а не просто пересчитать отчёт
+description: Проверяет rolling forecast, variance-to-action и product-finance boundary.
+
+input:
+  prompt: |
+    Я отвечаю за продуктовый P&L. Финансы раз в месяц присылают actuals, команда смотрит
+    revenue и расходы, объясняет отклонения и расходится. Budget обновляют раз в год.
+    Сейчас revenue близок к plan, но mix сместился в дешёвый тариф, новые когорты хуже
+    активируются, поддержка растёт, а cash collection замедлился. Точных чисел в запросе нет.
+
+    Перестрой это в минимальный управленческий контур CPO. Покажи, как должны быть связаны
+    actual, budget, rolling forecast, scenarios, cohorts, cash и продуктовые решения.
+    Не придумывай числа, календарную частоту или бухгалтерские правила.
+
+judge:
+  type: agent_judge
+  model: gpt-5.6-terra
+  criteria:
+    - "Не ограничивается шаблоном отчёта: создаёт повторяемый контур outcome/actuals → variance drivers → rolling forecast → decisions/actions → evidence/review."
+    - "Разделяет Actual, Plan/Budget, Forecast и Scenario, сохраняет историю forecast и не предлагает ждать следующего annual budget."
+    - "Связывает mix, activation, cohort quality, support cost и collections с revenue quality, contribution, operating result и cash без выдуманных сумм."
+    - "Предлагает cohort/segment and constrained-resource views, plan-to-actual и forecast-to-forecast bridges, owner/action/evidence gate для material variance."
+    - "Сохраняет Finance source of truth для booked actuals/accounting и CPO accountability за driver model, forecast assumptions и product actions."
+    - "Не назначает универсальную weekly/monthly cadence без оценки decision latency и volatility; заканчивает конкретными решениями, которые этот контур должен поддерживать."
