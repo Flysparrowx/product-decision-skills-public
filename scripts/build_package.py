@@ -1,4 +1,6 @@
-"""Build the v0.1.0 release ZIP from an explicit allowlist using only the standard library."""
+"""Build a local snapshot ZIP from an explicit allowlist using only the standard library.
+
+A rebuilt snapshot is not the immutable published v0.1.0 asset."""
 from pathlib import Path
 import hashlib
 import re
@@ -6,7 +8,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ('cpo-product-strategist', 'data-visualization-bi', 'microgroup-context-intelligence')
-FILES = ('README.md', 'README.en.md', 'SKILL-CARDS.md', 'PUBLICATION-NOTICE.md', 'ATTRIBUTION.md', 'LICENSE', 'THIRD-PARTY-NOTICES.txt', 'scripts/build_package.py')
+FILES = ('README.md', 'README.ru.md', 'README.en.md', 'SKILL-CARDS.md', 'PUBLICATION-NOTICE.md', 'ATTRIBUTION.md', 'LICENSE', 'THIRD-PARTY-NOTICES.txt', 'scripts/build_package.py')
 DIRS = tuple('skills/' + name for name in SKILLS) + ('demos', 'examples')
 # Reject recognizable credentials and machine-specific locations, not ordinary methodological terminology.
 UNSAFE = re.compile(r'/(?:Users|home)/[^\s]+|/private/(?:tmp|var)/[^\s]+|[A-Z]:\\Users\\|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\b(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b|(?:api_key|password|access_token)\s*[:=]\s*[\"\'][^\"\'\s]{8,}', re.I)

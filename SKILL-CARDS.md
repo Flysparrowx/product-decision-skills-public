@@ -42,4 +42,4 @@ Invoke: `$data-visualization-bi` · [Full skill](skills/data-visualization-bi/SK
 
 Invoke: `$microgroup-context-intelligence` · [Full skill](skills/microgroup-context-intelligence/SKILL.md)
 
-Each skill installs independently. / Каждый навык устанавливается независимо. [Установка на русском](README.md#установка-один-навык-или-все-три) · [Install in English](README.en.md#install-one-skill-or-all-three)
+Each skill installs independently. / Каждый навык устанавливается независимо. [Установка на русском](README.ru.md#установка-один-навык-или-все-три) · [Install in English](README.md#install-one-skill-or-all-three)
