@@ -12,7 +12,7 @@ Three independent, open-source AI Agent Skills for product leaders, founders and
 
 Install one skill or use the collection when a decision needs more than one perspective.
 
-[По-русски](README.ru.md) · [Skill cards](SKILL-CARDS.md) · [Inputs and saved outputs](examples/README.md)
+[Quick install](#quick-install) · [See it in action](#see-it-in-action) · [По-русски](README.ru.md) · [Skill cards](SKILL-CARDS.md) · [Inputs and saved outputs](examples/README.md)
 
 ## See it in action
 
@@ -56,7 +56,7 @@ These are collaboration instructions. Automatic selection and companion invocati
 
 ## Install one skill or all three
 
-The [Vercel Skills CLI](https://github.com/vercel-labs/skills) discovered all three skills and installed each separately and together in isolated Codex projects. Verified with **Skills CLI 1.7.2 on 2026-10-14**: manifests, references and scripts matched the repository files byte for byte; the installed chart renderer and research validator were checked separately.
+The [Vercel Skills CLI](https://github.com/vercel-labs/skills) discovered all three skills and installed each separately and together in isolated Codex projects. Verified on macOS with **Skills CLI 1.7.2 on 2026-10-14**: manifests, references and scripts matched the repository files byte for byte; the installed chart renderer and research validator were checked separately.
 
 List available skills without installing:
 
@@ -89,7 +89,7 @@ DISABLE_TELEMETRY=1 npx skills add \
   --skill microgroup-context-intelligence --agent codex --yes --copy
 ```
 
-Use the [quick-install command](#quick-install) for all three. For another supported agent, replace `codex` with its CLI identifier; only Codex project installation was tested here. Review existing skill folders before installing. `DISABLE_TELEMETRY=1` disables the CLI's anonymous usage telemetry.
+Use the [quick-install command](#quick-install) for all three. For another supported agent, replace `codex` with its CLI identifier; only Codex project installation on macOS was tested here. The command examples use a POSIX shell. Review existing skill folders before installing. `DISABLE_TELEMETRY=1` disables the CLI's anonymous usage telemetry.
 
 These commands fetch the repository's default branch, which can change. They do not install the frozen v0.1.0 ZIP. Installation checks confirm files and local tools, not automatic skill activation in every host.
 
