@@ -54,9 +54,11 @@ Each skill also works independently. CPO interprets the business decision; BI ha
 
 These are collaboration instructions. Automatic selection and companion invocation depend on your host; installing the folders does not guarantee automatic orchestration.
 
+Three fresh Codex CLI scenarios checked an explicitly selected CPO using both companions for a relevant task, avoiding companions for a narrow task, and providing a useful fallback when they were absent. The outputs and supplied chart values passed independent review. These are bounded checks in one host configuration, not a guarantee for every prompt or a demonstration of separate agent processes. Runtime activation in Claude Code and Cursor was not tested; only their installed files were verified.
+
 ## Install one skill or all three
 
-The [Vercel Skills CLI](https://github.com/vercel-labs/skills) discovered all three skills and installed each separately and together in isolated Codex projects. Verified on macOS with **Skills CLI 1.7.2 on 2026-10-14**: manifests, references and scripts matched the repository files byte for byte; the installed chart renderer and research validator were checked separately.
+The [Vercel Skills CLI](https://github.com/vercel-labs/skills) discovered all three skills and installed each separately and together in isolated Codex projects. All-three project installations were also verified for Claude Code and Cursor. Verified on macOS with **Skills CLI 1.7.2 on 2026-10-14**: complete skill files matched the repository byte for byte; the installed chart renderer and research validator were checked separately.
 
 List available skills without installing:
 
@@ -89,7 +91,7 @@ DISABLE_TELEMETRY=1 npx skills add \
   --skill microgroup-context-intelligence --agent codex --yes --copy
 ```
 
-Use the [quick-install command](#quick-install) for all three. For another supported agent, replace `codex` with its CLI identifier; only Codex project installation on macOS was tested here. The command examples use a POSIX shell. Review existing skill folders before installing. `DISABLE_TELEMETRY=1` disables the CLI's anonymous usage telemetry.
+Use the [quick-install command](#quick-install) for all three. For Claude Code or Cursor, replace `--agent codex` with `--agent claude-code` or `--agent cursor`; their complete project installations were tested on macOS. Other platforms and agents were not tested. The command examples use a POSIX shell. Review existing skill folders before installing. `DISABLE_TELEMETRY=1` disables the CLI's anonymous usage telemetry.
 
 These commands fetch the repository's default branch, which can change. They do not install the frozen v0.1.0 ZIP. Installation checks confirm files and local tools, not automatic skill activation in every host.
 
